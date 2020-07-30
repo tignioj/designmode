@@ -10,16 +10,14 @@ public class SingleTon3_Lazy_ThreadSafe_Optimize {
         if (INSTANCE == null) {
             synchronized (SingleTon3_Lazy_ThreadSafe_Optimize.class) {
                 if (INSTANCE == null) {
+                    // 尝试让线程暂停，使得其它线程有执行权
                     try { Thread.sleep(100); } catch (InterruptedException e) { e.printStackTrace(); }
                     INSTANCE = new SingleTon3_Lazy_ThreadSafe_Optimize();
                     System.out.println(Thread.currentThread().getName() + INSTANCE);
                 }
-                return INSTANCE;
             }
-        } else {
-            System.out.println("get:" + INSTANCE);
-            return INSTANCE;
         }
+        return INSTANCE;
     }
 
 
